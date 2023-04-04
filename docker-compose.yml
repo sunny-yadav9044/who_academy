@@ -9,9 +9,9 @@ services:
       - "8000:8000"
     networks:
       - my-network
+    volumes:
+      - ./courses_service:/app
     restart: always
-    links:
-      - auth
     depends_on:
       - auth
 
@@ -21,9 +21,24 @@ services:
       dockerfile: ./authentication_service/Dockerfile
     ports:
       - "8001:8001"
+    volumes:
+      - ./authentication_service:/app
     networks:
       - my-network
     restart: always
+
+  nginx:
+    image: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
+    links:
+      - courses
+      - auth
+    networks:
+      - my-network
 
 networks:
   my-network:

@@ -8,6 +8,13 @@ ENV PYTHONUNBUFFERED 1
 # Set work directory
 WORKDIR /app
 
+# Install some packages using apt-get
+RUN apt-get update && \
+    apt-get install -y \
+        nano \
+        iputils-ping \
+        curl
+
 # Install dependencies
 RUN pip install --upgrade pip
 COPY ./courses_service/requirements.txt /app/requirements.txt
@@ -18,9 +25,6 @@ COPY ./courses_service/ /app
 
 # Expose port 8000
 EXPOSE 8000
-
-# Run the test cases
-CMD ["python3", "manage.py", "test"]
 
 # Start the application
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8000"]

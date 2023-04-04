@@ -18,7 +18,7 @@ class CourseListAPITest(APITestCase):
         """
         Test that authenticated users can access the courses list endpoint.
         """
-        token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA2NzQzNDZ9.PNgscGN0Z_Tvq9lvBx3EKJp3IAfesJdhmBPyTx4aEuC'
+        token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI'
         self.client.credentials(HTTP_AUTHORIZATION=token)
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -27,7 +27,7 @@ class CourseListAPITest(APITestCase):
         """
         Test that the courses list can be paginated.
         """
-        token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA2NzQzNDZ9.PNgscGN0Z_Tvq9lvBx3EKJp3IAfesJdhmBPyTx4aEuC'
+        token = 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI'
         self.client.credentials(HTTP_AUTHORIZATION=token)
         response = self.client.get(f'{self.url}?page=1&page_size=5')
         self.assertEqual(response.status_code, status.HTTP_200_OK)

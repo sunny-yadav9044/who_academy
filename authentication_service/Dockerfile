@@ -8,6 +8,13 @@ ENV PYTHONUNBUFFERED 1
 # Set work directory
 WORKDIR /app
 
+# Install some packages using apt-get
+RUN apt-get update && \
+    apt-get install -y \
+        nano \
+        iputils-ping \
+        curl
+
 # Install dependencies
 RUN pip install --upgrade pip
 COPY ./authentication_service/requirements.txt /app/requirements.txt
@@ -19,8 +26,8 @@ COPY ./authentication_service/ /app
 # Expose port 8001
 EXPOSE 8001
 
-# Run the test cases
-CMD ["python3", "manage.py", "test"]
+# Run tests
+RUN python3 manage.py test
 
 # Start the application
 CMD ["python3", "manage.py", "runserver", "0.0.0.0:8001"]

@@ -3,7 +3,9 @@ import requests
 
 class AuthService:
     def __init__(self, token):
-        self.base_url = 'http://localhost:8001'
+        # we are using reverse proxy that using container name for communication
+        # self.base_url = 'http://localhost:8001'
+        self.base_url = 'http://encore_assignment-nginx-1'
         self.token = token
         self.session = requests.Session()
         self.session.headers.update({
