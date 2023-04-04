@@ -8,6 +8,8 @@ The user authentication microservice provides token-based authentication for the
 
 - `/auth/token/generate`: POST request for generate token valid for 1 day.
 - `/auth/token/validate`: POST request with the token in the Authorization header to invalidate the token.
+- 'Test Token': eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI
+- 'Token Format in Header': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI'
 
 ## Course List Microservice
 
@@ -33,3 +35,8 @@ To get started with the project, follow these steps:
 2. Install Docker and Docker Compose.
 3. Run `docker-compose up` to start the microservices.
 4. Test the API endpoints using a tool like Postman or curl.
+
+## Testing Details for Services
+- `Test Token`: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI
+- `Token Format in Header`: 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODE0OTIwNjR9.UguIdKkXocJ6Av0kGH-TH1foH8i3PJeNkyDMM4uzMtI'
+- `Sample CURL`: curl --location 'localhost:8000/courses?page=3&page_size=8&fields=name%2Corg%2Cid' --header 'Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODA3MTM5MzN9.WainXKpxQVmvKoad3ONxfozD5jGDPMG-6H__3yEhCi0'
