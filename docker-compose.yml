@@ -1,20 +1,31 @@
 version: '3'
 
 services:
-  auth:
+  courses:
     build:
-      context: ./courses_service
-      dockerfile: ./courses_service/DockerfileCourse
+      context: .
+      dockerfile: ./courses_service/Dockerfile
     ports:
       - "8000:8000"
+    networks:
+      - my-network
     restart: always
-  
-  course:
-    build:
-      context: ./authentication_service
-      dockerfile: ./authentication_service/DockerfileAuth
-    ports:
-      - "8001:8001"
+    links:
+      - auth
     depends_on:
       - auth
+
+  auth:
+    build:
+      context: .
+      dockerfile: ./authentication_service/Dockerfile
+    ports:
+      - "8001:8001"
+    networks:
+      - my-network
     restart: always
+
+networks:
+  my-network:
+    driver: bridge
+

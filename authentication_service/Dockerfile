@@ -10,14 +10,17 @@ WORKDIR /app
 
 # Install dependencies
 RUN pip install --upgrade pip
-COPY ./requirements.txt /app/requirements.txt
-RUN pip install -r requirements.txt
+COPY ./authentication_service/requirements.txt /app/requirements.txt
+RUN python3 -m pip install -r requirements.txt
 
 # Copy source code
-COPY ./authentication_service/
+COPY ./authentication_service/ /app
 
 # Expose port 8001
 EXPOSE 8001
 
+# Run the test cases
+CMD ["python3", "manage.py", "test"]
+
 # Start the application
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8001"]
+CMD ["python3", "manage.py", "runserver", "0.0.0.0:8001"]
